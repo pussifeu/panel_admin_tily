@@ -55,4 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['home/about'] = 'home/about';
 $route['home/json'] = 'home/getSongAndConvertToJson';
+$route['home/add-song-page'] = 'home/getViewAddSong';
+$route['home/delete-song/(:any)'] = 'home/deleteSong/$1';
 $route['home/insert-song'] = 'home/insertSong';

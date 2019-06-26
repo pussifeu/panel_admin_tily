@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome-4.7.0/css/font-awesome.min.css') ?>" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/ace.min.css" class="theme-stylesheet" id="theme-style"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/fonts.googleapis.com.css"/>
     <!-- page specific plugin styles -->
 </head>
 <body class="no-skin">
@@ -34,7 +33,7 @@
             <ul class="nav ace-nav">
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="<?php echo base_url(); ?>assets/avatars/user.jpg" alt="Admin Photo"/>
+                        <img class="nav-user-photo" src="<?php echo base_url(); ?>assets/avatars/profile-pic.jpg" alt="Admin Photo"/>
                         <span class="user-info"><small>Welcome,</small>Admin</span>
                         <i class="ace-icon fa fa-caret-down"></i>
                     </a>
@@ -58,18 +57,12 @@
 <div class="main-container" id="main-container">
     <div id="sidebar" class="sidebar responsive">
         <ul class="nav nav-list">
-            <li class="<?php echo $title == 'Home' ? 'active' : '' ?>">
+            <li class="<?php echo $title == 'Liste' || $title == 'Ajouter une nouvelle parole' ? 'active' : '' ?>">
                 <a href="<?= base_url() ?>">
-                    <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Dashboard </span>
+                    <i class="menu-icon fa fa-music"></i>
+                    <span class="menu-text"> Liste des paroles </span>
                 </a>
                 <b class="arrow"></b>
-            </li>
-            <li class="<?php echo $title == 'about' ? 'active' : '' ?>">
-                <a href="<?= base_url('/home/about') ?>">
-                    <i class="menu-icon fa fa-list-alt"></i>
-                    <span class="menu-text"> About us </span>
-                </a>
             </li>
         </ul><!-- /.nav-list -->
     </div>
@@ -79,21 +72,12 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="<?= base_url() ?>">Home</a>
+                        <a href="<?= base_url() ?>">Liste des paroles</a>
                     </li>
-                    <?php if ($title != 'Home') : ?>
+                    <?php if ($title != 'Liste') : ?>
                         <li class="active"><?php echo $title; ?></li>
                     <?php endif; ?>
                 </ul><!-- /.breadcrumb -->
-
-                <div class="nav-search" id="nav-search">
-                    <form class="form-search">
-						<span class="input-icon">
-							<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input1" autocomplete="off"/>
-							<i class="ace-icon fa fa-search nav-search-icon"></i>
-						</span>
-                    </form>
-                </div><!-- /.nav-search -->
             </div>
 
             <div class="page-content">
@@ -122,6 +106,8 @@
 <!-- basic scripts -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/theme.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables/jquery.dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/my_js/home.js"></script>
 </body>
 </html>

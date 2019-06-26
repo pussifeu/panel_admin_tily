@@ -12,10 +12,24 @@ class Home extends CI_Controller
     public function index()
     {
         header("Access-Control-Allow-Origin: *");
+        $aSongs = $this->songModel->aGetAllSong();
+        foreach ($aSongs as $keySong => $oSong) {
+            $aSongsPart = $this->songModel->aGetSongPartByIdSong($oSong->song_id);
+            $oSong->song_contents = $this->convertSongsPartToGood($aSongsPart);
+            $oSong->song_number = $keySong + 1;
+        }
+        $data['aSongs'] = $aSongs;
+        //var_dump($aSongs);
+        $this->template->set('title', 'Liste');
+        $this->template->load('default_layout', 'contents', 'home/vw_home', $data);
+    }
+
+    public function getViewAddSong()
+    {
         $data = array();
         $data['aTypeSongPartData'] = $this->songModel->aGetTypeSongPart();
-        $this->template->set('title', 'Home');
-        $this->template->load('default_layout', 'contents', 'home', $data);
+        $this->template->set('title', 'Ajouter une nouvelle parole');
+        $this->template->load('default_layout', 'contents', 'home/vw_add_song', $data);
     }
 
     public function getSongAndConvertToJson()
@@ -30,9 +44,9 @@ class Home extends CI_Controller
         fwrite($fp, json_encode($data['aSongs'], JSON_PRETTY_PRINT));
         fclose($fp);
         $path = ASSETSPATH . 'json_dump' . SEPARATOR_PATH;
-        /*$this->load->library('zip');
+        $this->load->library('zip');
         $this->zip->read_dir($path, FALSE);
-        $this->zip->download('Export_song_json.zip');*/
+        $this->zip->download('Export_song_json.zip');
         redirect(base_url('home'));
     }
 
@@ -41,7 +55,7 @@ class Home extends CI_Controller
         $i = 0;
         $index = 1;
         while ($i < sizeof($aSongsPart)) {
-            if($aSongsPart[$i]->type_song_part_id == "2") {
+            if ($aSongsPart[$i]->type_song_part_id == "2") {
                 $aSongsPart[$i]->song_part_number = $index;
                 $index++;
             } else {
@@ -50,7 +64,6 @@ class Home extends CI_Controller
             $i++;
         }
         return $aSongsPart;
-
     }
 
     public function insertSong()
@@ -68,15 +81,15 @@ class Home extends CI_Controller
             $aDataSongsParts['type_song_part_id'] = $aDataSongsPartsId[$i];
             $aDataSongsParts['song_part_text'] = $aDataSongsPartsText[$i];
             $aDataSongsParts['song_id'] = $songId;
-            $this->songModel->insertSongPartModel($aDataSongsParts);
+            if (isset($aDataSongsParts['song_part_text']) && !empty($aDataSongsParts['song_part_text']))
+                $this->songModel->insertSongPartModel($aDataSongsParts);
         }
         redirect(base_url('home'));
     }
 
-    public function about()
+    public function deleteSong($idSong)
     {
-        $data = array();
-        $this->template->set('title', 'About');
-        $this->template->load('default_layout', 'contents', 'about', $data);
+        $this->songModel->deleteSong($idSong);
+        redirect(base_url('home'));
     }
 }

@@ -21,28 +21,6 @@ class SongModel extends CI_Model
         }
     }
 
-    public function insertSongModel($aSongData)
-    {
-        try {
-            $this->db->insert('song', $aSongData);
-            $iInsertId = $this->db->insert_id();
-            return $iInsertId;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    public function insertSongPartModel($aSongPartData)
-    {
-        try {
-            $this->db->insert('song_part', $aSongPartData);
-            $iInsertId = $this->db->insert_id();
-            return $iInsertId;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
 
     public function aGetAllSong()
     {
@@ -68,6 +46,38 @@ class SongModel extends CI_Model
             return $query->result();
         } catch (Exception $e) {
             return null;
+        }
+    }
+
+    public function insertSongModel($aSongData)
+    {
+        try {
+            $this->db->insert('song', $aSongData);
+            $iInsertId = $this->db->insert_id();
+            return $iInsertId;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function insertSongPartModel($aSongPartData)
+    {
+        try {
+            $this->db->insert('song_part', $aSongPartData);
+            $iInsertId = $this->db->insert_id();
+            return $iInsertId;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function deleteSong($idSong)
+    {
+        try {
+            $this->db->delete('song', array('song_id' => $idSong));
+            return true;
+        } catch (Exception $e) {
+            return false;
         }
     }
 }
