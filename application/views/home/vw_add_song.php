@@ -3,7 +3,7 @@
         <div class="row col-xs-12 col-md-12">
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label for="song_tittle ">Titre</label>
+                    <label for="song_tittle ">Titre</label> <span class="text-danger">*</span>
                     <input type="text" class="form-control" required id="song_tittle" name="song_tittle"/>
                 </div>
                 <div class="form-group">
@@ -13,6 +13,10 @@
                 <div class="form-group">
                     <label for="song_compositor">Compositeur(s)</label>
                     <input type="text" class="form-control" id="song_compositor" name="song_compositor" placeholder=""/>
+                </div>
+                <div class="form-group">
+                    <label for="song_link_youtube">Lien youtube</label>
+                    <input type="text" class="form-control" id="song_link_youtube" name="song_link_youtube" placeholder=""/>
                 </div>
                 <div class="form-group">
                     <label for="song_description">Description</label>
@@ -31,7 +35,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="song_part_text">Parole</label>
+                        <label for="song_part_text">Paroles</label> <span class="text-danger">*</span>
                         <textarea style="height: 200px" class="form-control" name="song_part_text[]" placeholder="" required></textarea>
                     </div>
                 </div>
@@ -60,7 +64,7 @@
                     '</select>\n' +
                 '</div>\n' +
                 '<div class="form-group">\n' +
-                    '<label for="song_part_text">Parole</label>\n' +
+                    '<label for="song_part_text">Paroles</label>\n' +
                     '<textarea style="height: 200px" class="form-control" name="song_part_text[]" placeholde=""></textarea>\n' +
                 '</div>'
         $('.add_song_part').append('<div id="song_type_div_' + i + '">' + a + '</div>');

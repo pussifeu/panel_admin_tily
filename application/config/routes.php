@@ -54,7 +54,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home/about'] = 'home/about';
-$route['home/json'] = 'home/getSongAndConvertToJson';
-$route['home/add-song-page'] = 'home/getViewAddSong';
+$route['api/json-data'] = 'home/getSongAndConvertToJson';
+$route['home/json/(:any)'] = 'home/getSongAndConvertToJson/$1';
+$route['home/add-song-page'] = 'home/getViewMajSong';
+$route['home/update-song-page/(:any)'] = 'home/getViewMajSong/$1';
 $route['home/delete-song/(:any)'] = 'home/deleteSong/$1';
 $route['home/insert-song'] = 'home/insertSong';
+$route['home/update-song/(:any)'] = 'home/updateSong/$1';

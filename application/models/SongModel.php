@@ -35,6 +35,20 @@ class SongModel extends CI_Model
         }
     }
 
+    public function oGetSongById($iSongId)
+    {
+        try {
+            $this->db->select('song.*');
+            $this->db->from('song');
+            $this->db->where('song_id', $iSongId);
+            $this->db->order_by("song.song_id", 'asc');
+            $query = $this->db->get();
+            return $query->row();
+        } catch (Exception $e) {
+            return null;
+        }
+    }
+
     public function aGetSongPartByIdSong($iSongId)
     {
         try {
@@ -66,6 +80,28 @@ class SongModel extends CI_Model
             $this->db->insert('song_part', $aSongPartData);
             $iInsertId = $this->db->insert_id();
             return $iInsertId;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function updateSongModel($aSongData, $idSong)
+    {
+        try {
+            $this->db->where('song_id', $idSong);
+            $this->db->update('song', $aSongData);
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function updateSongPartModel($aSongPartData, $idSongPart)
+    {
+        try {
+
+            $this->db->where('song_part_id', $idSongPart);
+            $this->db->update('song_part', $aSongPartData);
         } catch (Exception $e) {
             return false;
         }
