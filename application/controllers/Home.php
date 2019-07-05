@@ -11,7 +11,6 @@ class Home extends CI_Controller
 
     public function index()
     {
-        header("Access-Control-Allow-Origin: *");
         $aSongs = $this->songModel->aGetAllSong();
         foreach ($aSongs as $keySong => $oSong) {
             $aSongsPart = $this->songModel->aGetSongPartByIdSong($oSong->song_id);
@@ -40,6 +39,7 @@ class Home extends CI_Controller
 
     public function getSongAndConvertToJson($bExportZip = null)
     {
+        header("Access-Control-Allow-Origin: *");
         $data['aSongs'] = $this->songModel->aGetAllSong();
         foreach ($data['aSongs'] as $keySong => $oSong) {
             $data['aSongsPart'] = $this->songModel->aGetSongPartByIdSong($oSong->song_id);
